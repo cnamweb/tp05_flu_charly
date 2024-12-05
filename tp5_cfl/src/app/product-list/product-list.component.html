@@ -1,0 +1,17 @@
+<div class="products_container">
+    <div class="product" *ngFor="let item of products">
+      <div class="product_wrapper">
+        <div class="product_title">{{ item.product }} </div>
+        <div class="product_quantity">{{ item.quantityLeft }} left </div>
+      </div>
+      <div class="product_wrapper">
+        <div class="product_price">{{ item.price }} {{ item.unit }} </div>
+      </div>
+      <div class="product_description">{{ item.description }} </div>
+      <div class="product_categories">
+        <div class="product_category" *ngFor="let category of item.categories">
+          {{ category }}
+        </div>
+      </div>
+    </div>
+  </div>

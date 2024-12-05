@@ -1,0 +1,5 @@
+<div class="store_container">
+    <h1>Charly's cursed input / output products</h1>
+    <app-filter [differentCategories]="differentCategories" (filterChanged)="onFilterChange($event)"></app-filter>
+    <app-product-list [products]="productsFiltered"></app-product-list>
+  </div>
