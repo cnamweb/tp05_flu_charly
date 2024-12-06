@@ -18,7 +18,8 @@
     border: 1px solid black;
     border-radius: 10px;
     width: 200px;
-    height: 300px;
+    min-height: 20
+    0px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -33,15 +34,15 @@
 .product_categories{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    margin-top: 20px;
+    justify-content: flex-end;
+    margin-top: 10px;
 }
 
 .product_category{
     background-color: #555555;
     color: white;
     padding: 5px;
-    margin: 5px;
+    margin-left: 5px;
     border-radius: 5px;
 }
 
