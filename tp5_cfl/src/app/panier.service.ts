@@ -26,6 +26,9 @@ export class PanierService {
         }
 
         this.panier.set(panier);
+
+        //log all the products in the cart
+        console.log(this.panier());
     }
 
     setProduitQtt(produit: Produit_panier) {
@@ -49,7 +52,6 @@ export class PanierService {
         let panier = this.panier();
         for (let i = 0; i < panier.length; i++) {
             if (panier[i].product === card.product) {
-                
                 panier.splice(i, 1);
                 this.panier.set(panier);
                 break;
@@ -59,5 +61,23 @@ export class PanierService {
 
     get getPanier() {
         return this.panier;
+    }
+
+    get getTotal() {
+        let total = 0;
+        let panier = this.panier();
+        for (let i = 0; i < panier.length; i++) {
+            total += panier[i].price * panier[i].quantity;
+        }
+        return total;
+    }
+
+    get getNbProduits() {
+        let nb = 0;
+        let panier = this.panier();
+        for (let i = 0; i < panier.length; i++) {
+            nb += panier[i].quantity;
+        }
+        return nb;
     }
 }

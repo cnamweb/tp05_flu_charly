@@ -2,7 +2,6 @@
   <div class="product" *ngFor="let item of products">
     <div class="product_wrapper">
       <div class="product_title">{{ item.product }} </div>
-      <div class="product_quantity">{{ item.quantityLeft }} left </div>
     </div>
 
     <div class="product_description">{{ item.description }} </div>
@@ -13,6 +12,10 @@
     </div>
     <div class="product_wrapper">
       <div class="product_price">{{ item.price }} {{ item.unit }} </div>
+    </div>
+    <div class="product_wrapper">
+      <input type="number" min="1" max="100" value="1" #quantityInput />
+      <button class="product_button" (click)="onAddToCart(item, quantityInput.value)">Add to cart</button>
     </div>
   </div>
 </div>

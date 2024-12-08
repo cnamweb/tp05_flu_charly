@@ -22,8 +22,7 @@ export class BoutiqueComponent implements OnInit {
         this.apiService.getProduits().subscribe((data: Produit[]) => {
             this.products = data;
             this.productsFiltered = data;
-            this.differentCategories = this.getDifferentCategories();
-            console.log(this.differentCategories);
+            this.differentCategories = this.getDifferentCategories(); 
         });
     }
 

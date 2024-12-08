@@ -1,6 +1,7 @@
 [
     { "product": "Apple", "price":"0.99", "unit":"€", "description":"A red fresh and sweet apple !", "categories":["food","fruit"] },
     { "product": "Banana", "price":"0.20", "unit":"€", "description":"A yellow banana, very sweet !", "categories":["food","fruit"] },
+    { "product": "Emmanuel Maurice", "price":"1000000", "unit":"€", "description":"Please give me a 5/5 :)", "categories":["pretty","human", "nice"] },
     { "product": "Orange", "price":"0.50", "unit":"€", "description":"A orange orange, very juicy !", "categories":["food","fruit"] },
     { "product": "Tomato", "price":"0.30", "unit":"€", "description":"A red tomato, very tasty !", "categories":["food","vegetable"] },
     { "product": "Potato", "price":"0.10", "unit":"€", "description":"A brown potato, very good !", "categories":["food","vegetable"] },

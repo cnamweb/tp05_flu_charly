@@ -55,3 +55,12 @@
     display: flex;
     flex-direction: column;
 }
+
+.product_wrapper input{
+    padding: 5px;
+    height: max-content;
+}
+
+.product_wrapper button:active{
+    background-color: #1f2f1e;
+}

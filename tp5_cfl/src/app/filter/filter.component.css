@@ -6,12 +6,6 @@
     width: 100%;
 }
 
-.filter_container input{
-    margin-right: 10px;
-    border-radius: 5px;
-    border: none;
-    height: 30px;
-}
 
 .filter_container select{
     margin-right: 10px;
