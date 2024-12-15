@@ -1,6 +1,11 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+import { ProduitState } from '../states/produits.state';
+import { Store } from '@ngxs/store';
+import { Filter } from '../models/filter';
+import { UpdateFilter } from '../actions/produits-action';
 
 @Component({
     selector: 'app-filter',
@@ -9,14 +14,19 @@ import { CommonModule } from '@angular/common';
     styleUrls: ['./filter.component.css']
 })
 export class FilterComponent {
-    @Output() filterChanged = new EventEmitter<{ search: string, selectedCategory: string }>();
+    categories$: Observable<string[]>;
 
-    @Input() differentCategories: string[] = [];
-
+    constructor(private store: Store) {
+        this.categories$ = this.store.select(ProduitState.getAllCategories);
+    }
     search: string = '';
     selectedCategory: string = 'All';
 
     onFilterChange() {
-        this.filterChanged.emit({ search: this.search, selectedCategory: this.selectedCategory });
+        console.log('Filter changed');
+        const filter = new Filter();
+        filter.name = this.search;
+        filter.category = this.selectedCategory;
+        this.store.dispatch(new UpdateFilter(filter));
     }
 }

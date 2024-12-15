@@ -1,5 +1,5 @@
 <div class="products_container">
-  <div class="product" *ngFor="let item of products">
+  <div class="product" *ngFor="let item of products$ | async">
     <div class="product_wrapper">
       <div class="product_title">{{ item.product }} </div>
     </div>

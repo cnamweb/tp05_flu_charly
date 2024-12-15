@@ -1,9 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Produit } from '../models/produit';
 import { Produit_panier } from '../models/produit_panier';
-import { Select, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { AddProduit } from '../actions/panier-action';
+import { Observable } from 'rxjs';
+import { ProduitState } from '../states/produits.state';
 
 @Component({
     selector: 'app-product-list',
@@ -12,16 +14,17 @@ import { AddProduit } from '../actions/panier-action';
     styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
-  @Input() products: Produit[] = [];
+  products$: Observable<Produit[]>;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store) { 
+    this.products$ = this.store.select(ProduitState.getProduits_filtre);
+  }
 
   onAddToCart(product: Produit, quantity: string) {
     const pr_panier = new Produit_panier();
     pr_panier.product = product.product;
     pr_panier.price = product.price;
     pr_panier.unit = product.unit;
-    //convert quantity to number
     pr_panier.quantity = parseInt(quantity);
 
     pr_panier.description = product.description;

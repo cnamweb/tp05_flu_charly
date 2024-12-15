@@ -44,9 +44,6 @@ export class PanierState {
             panier.push(payload);
         }
 
-        //display the panier in the console
-        console.log(panier);
-
         patchState({ panier });
     }
 

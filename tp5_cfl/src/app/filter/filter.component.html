@@ -5,7 +5,7 @@
     <div class="categories_container">
         <select [(ngModel)]="selectedCategory" (change)="onFilterChange()">
             <option value="All">All</option>
-            <option *ngFor="let category of differentCategories" [value]="category">{{ category }}</option>
+            <option *ngFor="let category of categories$ | async" [value]="category">{{ category }}</option>
         </select>
     </div>
 </div>
