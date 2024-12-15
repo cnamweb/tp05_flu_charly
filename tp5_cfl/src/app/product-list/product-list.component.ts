@@ -6,11 +6,10 @@ import { Select, Store } from '@ngxs/store';
 import { AddProduit } from '../actions/panier-action';
 
 @Component({
-  selector: 'app-product-list',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+    selector: 'app-product-list',
+    imports: [CommonModule],
+    templateUrl: './product-list.component.html',
+    styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
   @Input() products: Produit[] = [];

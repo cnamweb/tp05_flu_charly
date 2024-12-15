@@ -33,6 +33,7 @@ export class PanierState {
 
     @Action(AddProduit)
     add({ getState, patchState }: StateContext<PanierStateModel>, { payload }: AddProduit) {
+        console.log('AddProduit', payload);
         const state = getState();
         const panier = [...state.panier];
         const existingProduit = panier.find(p => p.product === payload.product);
@@ -42,6 +43,9 @@ export class PanierState {
         } else {
             panier.push(payload);
         }
+
+        //display the panier in the console
+        console.log(panier);
 
         patchState({ panier });
     }

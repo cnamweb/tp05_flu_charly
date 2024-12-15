@@ -7,7 +7,6 @@ import { ProductListComponent } from '../product-list/product-list.component';
 
 @Component({
     selector: 'app-boutique',
-    standalone: true,
     imports: [CommonModule, FilterComponent, ProductListComponent],
     templateUrl: './boutique.component.html',
     styleUrls: ['./boutique.component.css']

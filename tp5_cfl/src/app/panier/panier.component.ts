@@ -7,20 +7,21 @@ import { Observable } from 'rxjs';
 import { RemoveProduit, SetProduitQtt } from '../actions/panier-action';
 
 @Component({
-  selector: 'app-panier',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './panier.component.html',
-  styleUrl: './panier.component.css'
+    selector: 'app-panier',
+    imports: [CommonModule],
+    templateUrl: './panier.component.html',
+    styleUrl: './panier.component.css'
 })
 export class PanierComponent {
-  constructor(private store: Store) { }
+  panier$: Observable<Produit_panier[]>;
+  nbProduits$: Observable<number>;
+  total$: Observable<number>;
 
-  @Select(PanierState.getNbProduits) nbProduits$!: Observable<number>;
-
-  @Select(PanierState.getPanier) panier$!: Observable<Produit_panier[]>;
-
-  @Select(PanierState.getTotal) total$!: Observable<number>;
+  constructor(private store: Store) {
+    this.panier$ = this.store.select(PanierState.getPanier);
+    this.nbProduits$ = this.store.select(PanierState.getNbProduits);
+    this.total$ = this.store.select(PanierState.getTotal);
+   }
 
   onRemoveFromCart(product: Produit_panier) {
     this.store.dispatch(new RemoveProduit(product));

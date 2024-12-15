@@ -4,10 +4,9 @@ import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-filter',
-    standalone: true,
     templateUrl: './filter.component.html',
     imports: [FormsModule, CommonModule],
-    styleUrls: ['./filter.component.css'],
+    styleUrls: ['./filter.component.css']
 })
 export class FilterComponent {
     @Output() filterChanged = new EventEmitter<{ search: string, selectedCategory: string }>();
