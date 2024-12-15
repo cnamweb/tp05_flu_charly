@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { PanierService } from '../panier.service';
 import { CommonModule } from '@angular/common';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { PanierState } from '../states/panier.state';
 
 @Component({
   selector: 'app-tetiere',
@@ -11,9 +13,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './tetiere.component.css'
 })
 export class TetiereComponent {
-  constructor(private panierService: PanierService) { }
+  @Select(PanierState.getNbProduits) nbProduits$!: Observable<number>;
 
-  get getNbProduits() {
-    return this.panierService.getNbProduits;
-  }
+  constructor(private store: Store) { }
 }

@@ -1,7 +1,7 @@
 <nav>
     <a routerLink="boutique">Shop</a>
     <div class="panier_nav_wrapper">
-        <p *ngIf="getNbProduits>0"> {{getNbProduits}}</p>
+        <p> {{nbProduits$ | async }}</p>
         <a routerLink="panier">Cart</a>
     </div>
 </nav>

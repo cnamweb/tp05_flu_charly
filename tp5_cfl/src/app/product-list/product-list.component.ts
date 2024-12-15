@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Produit } from '../models/produit';
-import { PanierService } from '../panier.service';
 import { Produit_panier } from '../models/produit_panier';
+import { Select, Store } from '@ngxs/store';
+import { AddProduit } from '../actions/panier-action';
 
 @Component({
   selector: 'app-product-list',
@@ -14,7 +15,7 @@ import { Produit_panier } from '../models/produit_panier';
 export class ProductListComponent {
   @Input() products: Produit[] = [];
 
-  constructor(private panierService: PanierService) { }
+  constructor(private store: Store) { }
 
   onAddToCart(product: Produit, quantity: string) {
     const pr_panier = new Produit_panier();
@@ -26,6 +27,6 @@ export class ProductListComponent {
 
     pr_panier.description = product.description;
 
-    this.panierService.addProduit(pr_panier);
+    this.store.dispatch(new AddProduit(pr_panier));
   }
 }

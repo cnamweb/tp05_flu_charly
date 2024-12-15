@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { PanierService } from '../panier.service';
 import { Produit_panier } from '../models/produit_panier';
 import { CommonModule } from '@angular/common';
+import { Select, Store } from '@ngxs/store';
+import { PanierState } from '../states/panier.state';
+import { Observable } from 'rxjs';
+import { RemoveProduit, SetProduitQtt } from '../actions/panier-action';
 
 @Component({
   selector: 'app-panier',
@@ -11,27 +14,26 @@ import { CommonModule } from '@angular/common';
   styleUrl: './panier.component.css'
 })
 export class PanierComponent {
-  constructor(private panierService: PanierService) { }
+  constructor(private store: Store) { }
 
-  get getNbProduits() {
-    return this.panierService.getNbProduits;
-  }
+  @Select(PanierState.getNbProduits) nbProduits$!: Observable<number>;
 
-  get getPanier() {
-    return this.panierService.getPanier;
-  }
+  @Select(PanierState.getPanier) panier$!: Observable<Produit_panier[]>;
 
-  get getTotal() {
-    return this.panierService.getTotal;
-  }
+  @Select(PanierState.getTotal) total$!: Observable<number>;
 
   onRemoveFromCart(product: Produit_panier) {
-    this.panierService.removeProduit(product);
+    this.store.dispatch(new RemoveProduit(product));
   }
 
-  onSetQtt(product: Produit_panier, quantity: string) {
-    const q = parseInt(quantity);
-    product.quantity = q;
-    this.panierService.setProduitQtt(product);
+  onSetQuantity(product: Produit_panier, quantity: string) {
+    const pr_panier = new Produit_panier();
+    pr_panier.product = product.product;
+    pr_panier.price = product.price;
+    pr_panier.unit = product.unit;
+    pr_panier.quantity = parseInt(quantity);
+    pr_panier.description = product.description;
+
+    this.store.dispatch(new SetProduitQtt(pr_panier));
   }
 }
